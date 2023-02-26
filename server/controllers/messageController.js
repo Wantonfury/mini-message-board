@@ -4,7 +4,7 @@ const { body, validationResult } = require('express-validator');
 
 exports.index = (req, res, next) => {
   Message.find()
-    .sort({ date: 1 })
+    .sort({ date: -1 })
     .exec((err, messages) => {
       if (err) return next(err);
       
