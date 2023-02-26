@@ -1,0 +1,16 @@
+.chat-list {
+  list-style: none;
+  
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  
+  overflow-y: auto;
+  
+  max-height: 500px;
+  width: 100%;
+}
+
+.chat-list li {
+  text-align: left;
+}

@@ -20,6 +20,7 @@ function App() {
     return fetch('http://localhost:9000/get_messages')
       .then(res => res.text())
       .then(res => {
+        if (isLoading) setIsLoading(false);
         return JSON.parse(res);
       });
   }
@@ -34,6 +35,16 @@ function App() {
     
     fetchData();
   }, [checkMessages]);
+  
+  useEffect(() => {
+    if (isLoading) setMessages([
+      {
+        text: 'Loading messages...',
+        user: '',
+        date: null
+      }
+    ]);
+  }, [isLoading]);
   
   return (
     <div className="App">

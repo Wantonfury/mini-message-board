@@ -1,0 +1,26 @@
+#message-form {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  
+  column-gap: 20px;
+}
+
+#message-user {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+}
+
+#message-text {
+  grid-row: 2 / 4;
+  grid-column: 1 / 2;
+  
+  resize: none;
+  
+  word-wrap: normal;
+}
+
+#message-submit {
+  grid-row: 1 / 4;
+  grid-column: 2 / 3;
+}
