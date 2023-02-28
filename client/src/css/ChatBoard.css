@@ -1,16 +1,37 @@
 .chat-list {
   list-style: none;
+  padding: 0;
+  margin: 0;
   
   display: flex;
   flex-direction: column-reverse;
   align-items: flex-start;
+  gap: 10px;
   
   overflow-y: auto;
   
-  max-height: 500px;
+  max-height: 800px;
   width: 100%;
 }
 
 .chat-list li {
   text-align: left;
+  
+  max-width: 97%;
+  
+  background-color: var(--chat-card);
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.chat-date {
+  color: var(--chat-user);
+}
+
+.chat-user {
+  color: var(--chat-user);
+}
+
+.chat-text {
+  color: var(--chat-text);
 }

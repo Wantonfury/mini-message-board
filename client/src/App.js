@@ -2,6 +2,7 @@ import './App.css';
 import { useEffect, useState, useCallback } from "react";
 import ChatBoard from './components/ChatBoard';
 import ChatInput from './components/ChatInput';
+import Header from './components/Header';
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -48,8 +49,11 @@ function App() {
   
   return (
     <div className="App">
-      <ChatBoard messages={messages} />
-      <ChatInput />
+      <Header />
+      <div className="App-container">
+        <ChatBoard messages={messages} />
+        <ChatInput />
+      </div>
     </div>
   );
 }

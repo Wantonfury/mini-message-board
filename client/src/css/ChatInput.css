@@ -1,9 +1,10 @@
 #message-form {
   display: grid;
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 9fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   
   column-gap: 20px;
+  width: 100%;
 }
 
 #message-user {
@@ -23,4 +24,18 @@
 #message-submit {
   grid-row: 1 / 4;
   grid-column: 2 / 3;
+  
+  background-color: var(--chat-btn);
+  color: var(--chat-btn-text);
+  
+  border-radius: 10px;
+  
+  
+  font-size: 20px;
+  
+  cursor: pointer;
+}
+
+#message-submit:hover {
+  background-color: #f7ad3e;
 }
