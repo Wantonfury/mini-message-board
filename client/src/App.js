@@ -7,7 +7,7 @@ import Header from './components/Header';
 function App() {
   const SERVER = process.env.REACT_APP_SERVER || 'localhost:9000';
   console.log("SERVER: " + SERVER);
-  const ws = new WebSocket(`wss://${SERVER}:8080`);
+  const ws = new WebSocket(`wss://${SERVER.replace('https://', '')}:8080`);
   
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
