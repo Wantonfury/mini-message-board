@@ -3,15 +3,17 @@ import { useEffect, useState } from "react";
 import ChatBoard from './components/ChatBoard';
 import ChatInput from './components/ChatInput';
 import Header from './components/Header';
+import dotenv from "dotenv";
 
 function App() {
-  const [messages, setMessages] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [checkMessages, setCheckMessages] = useState(true);
-  
+  dotenv.config();
   const SERVER = process.env.SERVER || 'localhost';
   console.log("SERVER: " + SERVER);
   const ws = new WebSocket(`ws://${SERVER}:8080`);
+  
+  const [messages, setMessages] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [checkMessages, setCheckMessages] = useState(true);
   
   ws.addEventListener('message', (e) => {
     if (e.data === 'new_message') {
