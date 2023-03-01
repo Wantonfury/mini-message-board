@@ -1,11 +1,11 @@
 import '../css/ChatInput.css';
 import axios from "axios";
 
-const ChatInput = () => {
+const ChatInput = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    axios.post('http://localhost:9000/new_message', document.querySelector('#message-form'), {
+    axios.post(`http://${SERVER}:9000/new_message`, document.querySelector('#message-form'), {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -19,13 +19,11 @@ const ChatInput = () => {
       e.preventDefault();
       
       e.currentTarget.parentElement.requestSubmit();
-      //const newEvent = new Event('submit', { cancelable: true });
-      //e.currentTarget.parentElement.dispatchEvent(newEvent);
     }
   }
   
   return (
-    <form id='message-form' method="POST" action="http://localhost:9000/new_message" onSubmit={handleSubmit}>
+    <form id='message-form' method="POST" action={`http://${props.SERVER}:9000/new_message`} onSubmit={handleSubmit}>
       <input id='message-user' type='text' name='user' placeholder='Username' pattern=".{3,}" title="3 characters minimum" required />
       <textarea id='message-text' name='text' placeholder='Message' onKeyDown={handleEnter} required />
       <button id='message-submit' type='submit'>Send</button>

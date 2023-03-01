@@ -10,6 +10,7 @@ function App() {
   const [checkMessages, setCheckMessages] = useState(true);
   
   const SERVER = process.env.SERVER || 'localhost';
+  console.log("SERVER: " + SERVER);
   const ws = new WebSocket(`ws://${SERVER}:8080`);
   
   ws.addEventListener('message', (e) => {
@@ -49,7 +50,7 @@ function App() {
       <Header />
       <div className="App-container">
         <ChatBoard messages={messages} />
-        <ChatInput />
+        <ChatInput SERVER={SERVER} />
       </div>
     </div>
   );
