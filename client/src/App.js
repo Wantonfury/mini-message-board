@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import ChatBoard from './components/ChatBoard';
 import ChatInput from './components/ChatInput';
 import Header from './components/Header';
@@ -17,18 +17,14 @@ function App() {
     }
   });
   
-  const fetchMessages = async () => {
-    return fetch('http://localhost:9000/get_messages')
-      .then(res => res.text())
-      .then(res => {
-        if (isLoading) setIsLoading(false);
-        return JSON.parse(res);
-      });
-  }
-  
   useEffect(() => {
     const fetchData = async () => {
-      const messages = await fetchMessages();
+      const messages = await fetch('http://localhost:9000/get_messages')
+        .then(res => res.text())
+        .then(res => {
+          setIsLoading(false);
+          return JSON.parse(res);
+        });
       
       setMessages(messages);
       setCheckMessages(false);
