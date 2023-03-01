@@ -9,7 +9,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [checkMessages, setCheckMessages] = useState(true);
   
-  const ws = new WebSocket('ws://localhost:8080');
+  const SERVER = process.env.SERVER || 'localhost';
+  const ws = new WebSocket(`ws://${SERVER}:8080`);
   
   ws.addEventListener('message', (e) => {
     if (e.data === 'new_message') {
@@ -19,7 +20,7 @@ function App() {
   
   useEffect(() => {
     const fetchData = async () => {
-      const messages = await fetch('http://localhost:9000/get_messages')
+      const messages = await fetch(`${SERVER}:9000/get_messages`)
         .then(res => res.text())
         .then(res => {
           setIsLoading(false);
@@ -31,7 +32,7 @@ function App() {
     }
     
     fetchData();
-  }, [checkMessages]);
+  }, [checkMessages, SERVER]);
   
   useEffect(() => {
     if (isLoading) setMessages([
