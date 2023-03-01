@@ -4,20 +4,22 @@ import ChatBoard from './components/ChatBoard';
 import ChatInput from './components/ChatInput';
 import Header from './components/Header';
 
+const SERVER = process.env.REACT_APP_SERVER || 'localhost:9000';
+
 function App() {
-  const SERVER = process.env.REACT_APP_SERVER || 'localhost:9000';
-  console.log("SERVER: " + SERVER);
-  const ws = new WebSocket(`wss://${SERVER.replace('https://', '')}`);
-  
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [checkMessages, setCheckMessages] = useState(true);
   
-  ws.addEventListener('message', (e) => {
-    if (e.data === 'new_message') {
-      setCheckMessages(true);
-    }
-  });
+  useEffect(() => {
+    const ws = new WebSocket(`wss://${SERVER.replace('https://', '')}`);
+    
+    ws.addEventListener('message', (e) => {
+      if (e.data === 'new_message') {
+        setCheckMessages(true);
+      }
+    });
+  }, []);
   
   useEffect(() => {
     const fetchData = async () => {
@@ -33,7 +35,7 @@ function App() {
     }
     
     fetchData();
-  }, [checkMessages, SERVER]);
+  }, [checkMessages]);
   
   useEffect(() => {
     if (isLoading) setMessages([
