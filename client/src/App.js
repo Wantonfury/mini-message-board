@@ -7,7 +7,7 @@ import * as dotenv from "dotenv";
 
 function App() {
   dotenv.config();
-  const SERVER = process.env.SERVER || 'localhost';
+  const SERVER = process.env.REACT_APP_SERVER || 'localhost';
   console.log("SERVER: " + SERVER);
   const ws = new WebSocket(`ws://${SERVER}:8080`);
   
