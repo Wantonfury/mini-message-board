@@ -5,7 +5,7 @@ import ChatInput from './components/ChatInput';
 import Header from './components/Header';
 
 function App() {
-  const SERVER = process.env.REACT_APP_SERVER || 'localhost';
+  const SERVER = process.env.REACT_APP_SERVER || 'localhost:9000';
   console.log("SERVER: " + SERVER);
   const ws = new WebSocket(`wss://${SERVER}:8080`);
   
@@ -21,7 +21,7 @@ function App() {
   
   useEffect(() => {
     const fetchData = async () => {
-      const messages = await fetch(`https://${SERVER}:9000/get_messages`)
+      const messages = await fetch(`https://${SERVER}/get_messages`)
         .then(res => res.text())
         .then(res => {
           setIsLoading(false);
