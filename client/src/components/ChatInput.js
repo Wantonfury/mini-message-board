@@ -5,7 +5,7 @@ const ChatInput = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    axios.post(`http://${SERVER}:9000/new_message`, document.querySelector('#message-form'), {
+    axios.post(`http://${props.SERVER}:9000/new_message`, document.querySelector('#message-form'), {
       headers: {
         'Content-Type': 'application/json'
       }
