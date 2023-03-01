@@ -3,10 +3,8 @@ import { useEffect, useState } from "react";
 import ChatBoard from './components/ChatBoard';
 import ChatInput from './components/ChatInput';
 import Header from './components/Header';
-import * as dotenv from "dotenv";
 
 function App() {
-  dotenv.config();
   const SERVER = process.env.SERVER || 'localhost';
   console.log("SERVER: " + SERVER);
   const ws = new WebSocket(`ws://${SERVER}:8080`);
