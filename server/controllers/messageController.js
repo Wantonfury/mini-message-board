@@ -1,5 +1,5 @@
 const Message = require('../models/message');
-const wss = require('../wsserver');
+const wsserver = require('../wsserver');
 const { body, validationResult } = require('express-validator');
 
 exports.index = (req, res, next) => {
@@ -51,7 +51,7 @@ exports.message_create = [
     message.save(err => {
       if (err) return next(err);
       res.status(200).send();
-      wss.clients.forEach((client) => client.send('new_message'));
+      wsserver.getWss().clients.forEach((client) => client.send('new_message'));
     });
   }
 ];

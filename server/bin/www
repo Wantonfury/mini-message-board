@@ -8,7 +8,7 @@ var app = require('../app');
 var debug = require('debug')('mini-message-board:server');
 var http = require('http');
 const WebSocket = require('ws');
-let wss = require('../wsserver');
+const wsserver = require('../wsserver');
 
 /**
  * Get port from environment and store in Express.
@@ -91,7 +91,8 @@ function onListening() {
   debug('Listening on ' + bind);
 }
 
-wss = new WebSocket.Server({ server });
+const wss = new WebSocket.Server({ server });
+wsserver.setWss(wss);
 
 function heartbeat() {
   this.isAlive = true;
@@ -116,4 +117,5 @@ const interval = setInterval(function ping() {
 
 wss.on('close', function  close() {
   clearInterval(interval);
+  console.log("Disconnection.");
 });

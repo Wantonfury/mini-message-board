@@ -27,4 +27,5 @@ let wss = null; //= new WebSocket.Server({ server });
 //   clearInterval(interval);
 // });
 
-module.exports = wss;
+exports.getWss = () => wss;
+exports.setWss = (wssNew) => wss = wssNew;
