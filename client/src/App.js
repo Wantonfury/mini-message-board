@@ -21,7 +21,7 @@ function App() {
   
   useEffect(() => {
     const fetchData = async () => {
-      const messages = await fetch(`https://${SERVER}/get_messages`)
+      const messages = await fetch(`${SERVER}/get_messages`)
         .then(res => res.text())
         .then(res => {
           setIsLoading(false);

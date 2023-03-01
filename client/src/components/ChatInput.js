@@ -5,7 +5,7 @@ const ChatInput = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    axios.post(`https://${props.SERVER}/new_message`, document.querySelector('#message-form'), {
+    axios.post(`${props.SERVER}/new_message`, document.querySelector('#message-form'), {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -23,7 +23,7 @@ const ChatInput = (props) => {
   }
   
   return (
-    <form id='message-form' method="POST" action={`https://${props.SERVER}/new_message`} onSubmit={handleSubmit}>
+    <form id='message-form' method="POST" action={`${props.SERVER}/new_message`} onSubmit={handleSubmit}>
       <input id='message-user' type='text' name='user' placeholder='Username' pattern=".{3,}" title="3 characters minimum" required />
       <textarea id='message-text' name='text' placeholder='Message' onKeyDown={handleEnter} required />
       <button id='message-submit' type='submit'>Send</button>
