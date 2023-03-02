@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import ChatBoard from './components/ChatBoard';
 import ChatInput from './components/ChatInput';
 import Header from './components/Header';
+import WebSocket from "ws";
 
 const SERVER = process.env.REACT_APP_SERVER || 'localhost:9000';
 
@@ -22,16 +23,16 @@ function App() {
   useEffect(() => {
     const ws = new WebSocket(`wss://${SERVER.replace('https://', '')}`);
     
-    ws.addEventListener('message', (e) => {
+    ws.on('message', (e) => {
       if (e.data === 'new_message') {
         setCheckMessages(true);
       }
     });
     
-    ws.addEventListener('error', console.error);
-    ws.addEventListener('open', heartbeat);
-    ws.addEventListener('ping', heartbeat);
-    ws.addEventListener('close', function clear() {
+    ws.on('error', console.error);
+    ws.on('open', heartbeat);
+    ws.on('ping', heartbeat);
+    ws.on('close', function clear() {
       clearTimeout(this.pingTimeout);
     });
   }, []);
