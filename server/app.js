@@ -1,4 +1,3 @@
-require('dotenv').config();
 const cors = require('cors');
 const createError = require('http-errors');
 const express = require('express');
