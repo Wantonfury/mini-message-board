@@ -30,7 +30,10 @@ function App() {
     
     ws.addEventListener('error', console.error);
     ws.addEventListener('open', heartbeat);
-    ws.addEventListener('ping', heartbeat);
+    ws.addEventListener('ping', function pong() {
+      ws.send('pong');
+      heartbeat()
+    });
     ws.addEventListener('close', function clear() {
       clearTimeout(this.pingTimeout);
     });
