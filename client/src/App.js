@@ -6,6 +6,14 @@ import Header from './components/Header';
 
 const SERVER = process.env.REACT_APP_SERVER || 'localhost:9000';
 
+function heartbeat() {
+  clearTimeout(this.pingTimeout);
+  
+  this.pingTimeout = setTimeout(() => {
+    this.terminate();
+  }, 30000 + 1000);
+}
+
 function App() {
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -18,6 +26,13 @@ function App() {
       if (e.data === 'new_message') {
         setCheckMessages(true);
       }
+    });
+    
+    ws.on('error', console.error);
+    ws.on('open', heartbeat);
+    ws.on('ping', heartbeat);
+    ws.on('close', function clear() {
+      clearTimeout(this.pingTimeout);
     });
   }, []);
   
