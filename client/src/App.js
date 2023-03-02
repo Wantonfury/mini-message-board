@@ -12,7 +12,7 @@ function App() {
   const [checkMessages, setCheckMessages] = useState(true);
   
   useEffect(() => {
-    const ws = new WebSocket(`wss://${SERVER.replace('https://', '')}:9000`);
+    const ws = new WebSocket(`wss://${SERVER.replace('https://', '')}`);
     
     ws.addEventListener('message', (e) => {
       if (e.data === 'new_message') {
