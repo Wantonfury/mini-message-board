@@ -1,5 +1,5 @@
 const server = require('./bin/www');
-const WebSocket = require('ws');
+const WebSocketServer = require('ws');
 let wss = null; //= new WebSocket.Server({ server });
 
 // function heartbeat() {

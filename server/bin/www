@@ -7,7 +7,7 @@ require('dotenv').config();
 var app = require('../app');
 var debug = require('debug')('mini-message-board:server');
 var http = require('http');
-const WebSocket = require('ws');
+const WebSocketServer = require('ws');
 const wsserver = require('../wsserver');
 
 /**
@@ -91,7 +91,7 @@ function onListening() {
   debug('Listening on ' + bind);
 }
 
-const wss = new WebSocket.Server({ server });
+const wss = new WebSocketServer.Server({ server });
 wsserver.setWss(wss);
 
 function heartbeat() {
