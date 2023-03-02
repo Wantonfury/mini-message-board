@@ -5,16 +5,16 @@ const ChatBoard = (props) => {
   const [messagesCount, setMessagesCount] = useState(20);
   const [chatWindow, setChatWindow] = useState(null);
   
-  if (!chatWindow && document.querySelector('.chat-list')) setChatWindow(document.querySelector('.chat-list'));
+  // if (!chatWindow && document.querySelector('.chat-list')) setChatWindow(document.querySelector('.chat-list'));
   
-  useEffect(() => {
-    setChatWindow(document.querySelector('.chat-list'));
-  }, []);
+  // useEffect(() => {
+  //   setChatWindow(document.querySelector('.chat-list'));
+  // }, []);
   
-  useEffect(() => {
-    console.log(chatWindow.scrollY);
-    if (!chatWindow.scrollY) setMessagesCount(count => count + 10);
-  }, [chatWindow.scrollY]);
+  // useEffect(() => {
+  //   console.log(chatWindow.scrollY);
+  //   if (!chatWindow.scrollY) setMessagesCount(count => count + 10);
+  // }, [chatWindow.scrollY]);
   
   var stringToColor = (string, saturation = 100, lightness = 75) => {
     let hash = 0;
