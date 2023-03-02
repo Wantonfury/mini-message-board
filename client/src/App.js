@@ -28,10 +28,10 @@ function App() {
       }
     });
     
-    ws.on('error', console.error);
-    ws.on('open', heartbeat);
-    ws.on('ping', heartbeat);
-    ws.on('close', function clear() {
+    ws.addEventListener('error', console.error);
+    ws.addEventListener('open', heartbeat);
+    ws.addEventListener('ping', heartbeat);
+    ws.addEventListener('close', function clear() {
       clearTimeout(this.pingTimeout);
     });
   }, []);
